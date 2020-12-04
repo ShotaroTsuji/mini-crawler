@@ -11,3 +11,6 @@ reqwest = { version = "0.10", features = ["blocking"] }
 eyre = "0.6"
 select = "0.5"
 url = "2.2"
+log = "0.4.0"
+env_logger = "0.8.2"
+thiserror = "1"
