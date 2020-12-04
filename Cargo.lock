@@ -504,6 +504,7 @@ dependencies = [
  "eyre",
  "reqwest",
  "select",
+ "url",
 ]
 
 [[package]]
