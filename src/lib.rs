@@ -75,8 +75,19 @@ impl crawler::AdjacentNodes for LinkExtractor {
     type Node = Url;
 
     fn adjacent_nodes(&self, v: &Self::Node) -> Vec<Self::Node> {
-        match self.get_links(v.clone()) {
-            Ok(links) => links,
+        let links = {
+            let t0 = std::time::Instant::now();
+            let links = self.get_links(v.clone());
+            let elp = t0.elapsed();
+            log::info!("GetLinks: {} ms", elp.as_millis());
+
+            links
+        };
+        match links {
+            Ok(links) => {
+                log::info!("{} links found", links.len());
+                links
+            },
             Err(e) => {
                 use std::error::Error;
                 log::warn!("Error occurred: {}", e);
